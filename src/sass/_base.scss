@@ -2,6 +2,7 @@
 $color-primary: #f38e82;
 $color-grad-1: #fbdb89;
 $color-grad-2: #f48982;
+$color-grad-3: #df6f68;
 
 $color-grey-light-1: #f9f5f3; // Light background
 $color-grey-light-2: #f2efee; // Light lines
@@ -10,6 +11,8 @@ $color-grey-dark-1: #615551; // Normal text
 $color-grey-dark-2: #918581; // Lighter text
 
 $gradient: linear-gradient(to right bottom, $color-grad-1, $color-grad-2);
+
+$gradientDelete: linear-gradient(to right bottom, $color-grad-2, $color-grad-3);
 
 $bp-large: 78.15em; // 1250px
 $bp-medium: 61.25em; // 980px

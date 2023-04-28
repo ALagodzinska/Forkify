@@ -48,7 +48,9 @@ class RecipeView extends View {
             <span>${this._data.title}</span>
           </h1>
         </figure>
+
         <div class="recipe__details">
+
           <div class="recipe__info">
             <svg class="recipe__info-icon">
               <use href="${icons}#icon-clock"></use>
@@ -58,6 +60,7 @@ class RecipeView extends View {
             }</span>
             <span class="recipe__info-text">minutes</span>
           </div>
+
           <div class="recipe__info">
             <svg class="recipe__info-icon">
               <use href="${icons}#icon-users"></use>
@@ -66,7 +69,6 @@ class RecipeView extends View {
               this._data.servings
             }</span>
             <span class="recipe__info-text">servings</span>
-
             <div class="recipe__info-buttons">
               <button class="btn--tiny btn--update-servings" data-update-to="${
                 this._data.servings - 1
@@ -84,18 +86,31 @@ class RecipeView extends View {
               </button>
             </div>
           </div>
-          <div class="recipe__user-generated ${this._data.key ? '' : 'hidden'}">
-            <svg>
-              <use href="${icons}#icon-user"></use>
-            </svg>
-          </div>
-          <button class="btn--round btn--bookmark">
-            <svg class="">
-              <use href="${icons}#icon-bookmark${
+
+          <div class="recipe__info">
+            <div class="recipe__user-generated ${
+              this._data.key ? '' : 'hidden'
+            }">
+              <svg>
+                <use href="${icons}#icon-user"></use>
+              </svg>
+            </div>
+
+            <button class="btn--round btn--bookmark">
+              <svg class="">
+                <use href="${icons}#icon-bookmark${
       this._data.bookmarked ? '-fill' : ''
     }"></use>
-            </svg>
-          </button>
+              </svg>
+            </button>   
+             
+            <button class="btn--round btn--delete">
+              <svg class="">
+                <use href="${icons}#icon-delete"></use>
+              </svg>
+            </button>       
+          </div>
+          
         </div>
 
         <div class="recipe__ingredients">
