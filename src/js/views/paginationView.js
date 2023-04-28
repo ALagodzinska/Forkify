@@ -26,45 +26,47 @@ class PaginationView extends View {
 
     // Page 1, and there are other pages
     if (curPage === 1 && numPages > 1) {
-      return this._generateNextButtonMarkup(curPage);
+      return this._generatePageButtonMarkup(numPages, curPage);
     }
     // Last page
     if (curPage === numPages && numPages > 1) {
-      return this._generatePrevButtonMarkup(curPage);
+      return this._generatePageButtonMarkup(numPages, curPage);
     }
     // Other page
     if (curPage < numPages && curPage !== 1) {
-      return [
-        this._generatePrevButtonMarkup(curPage),
-        this._generateNextButtonMarkup(curPage),
-      ].join('');
+      return this._generatePageButtonMarkup(numPages, curPage);
     }
     // Page 1, and there are NO other pages
     return '';
   }
 
-  _generateNextButtonMarkup(curPage) {
+  _generatePageButtonMarkup(numPages, curPage) {
     return `
-        <button data-goto="${
-          curPage + 1
-        }" class="btn--inline pagination__btn--next">
+      <button data-goto="${
+        curPage - 1
+      }" class="btn--inline pagination__btn--prev" style="visibility: ${
+      curPage - 1 < 1 ? 'hidden' : 'visible'
+    }">
+          <svg class="search__icon">
+            <use href="${icons}#icon-arrow-left"></use>
+          </svg>
+          <span>Page ${curPage - 1}</span>
+      </button>
+
+      <div class="pagination__page-count">${curPage}/${numPages}</div>
+
+      <button data-goto="${
+        curPage + 1
+      }" class="btn--inline pagination__btn--next" style="visibility: ${
+      curPage + 1 > numPages ? 'hidden' : 'visible'
+    }">
             <span>Page ${curPage + 1}</span>
             <svg class="search__icon">
               <use href="${icons}#icon-arrow-right"></use>
             </svg>
-        </button>`;
-  }
+      </button>
 
-  _generatePrevButtonMarkup(curPage) {
-    return `
-        <button data-goto="${
-          curPage - 1
-        }" class="btn--inline pagination__btn--prev">
-            <svg class="search__icon">
-              <use href="${icons}#icon-arrow-left"></use>
-            </svg>
-            <span>Page ${curPage - 1}</span>
-        </button>`;
+    `;
   }
 }
 
