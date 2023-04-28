@@ -104,7 +104,9 @@ class RecipeView extends View {
               </svg>
             </button>   
              
-            <button class="btn--round btn--delete">
+            <button class="btn--round btn--delete ${
+              this._data.key ? '' : 'hidden'
+            }" data-id="${this._data.id}" data-name="${this._data.title}">
               <svg class="">
                 <use href="${icons}#icon-delete"></use>
               </svg>

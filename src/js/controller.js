@@ -6,6 +6,7 @@ import resultsView from './views/resultsView.js';
 import bookmarksView from './views/bookmarksView.js';
 import paginationView from './views/paginationView.js';
 import addRecipeView from './views/addRecipeView.js';
+import deleteRecipeView from './views/deleteRecipeView.js';
 
 // import icons from '../img/icons.svg'; // Parcel 1
 // returns link to icons file from dist folder
