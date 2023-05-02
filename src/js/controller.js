@@ -13,6 +13,7 @@ import deleteRecipeView from './views/deleteRecipeView.js';
 // import icons from 'url:../img/icons.svg'; // Parcel 2
 import 'core-js/stable'; // polyfilled everything else
 import 'regenerator-runtime/runtime'; // polyfilled async await
+import { async } from 'regenerator-runtime';
 
 if (module.hot) {
   module.hot.accept();
@@ -102,6 +103,38 @@ const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
+const controlDeleteRecipe = async function (recipeId) {
+  // Show Loading spinner
+  deleteRecipeView.renderSpinner();
+
+  // Remove recipe
+  await model.deleteRecipe(recipeId);
+
+  // Change URL without reload
+  window.history.replaceState(null, null, '/');
+
+  // Success message
+  deleteRecipeView.renderMessage();
+
+  //Update Bookmarks
+  model.removeElement(recipeId, model.state.bookmarks);
+  bookmarksView.render(model.state.bookmarks);
+
+  // Update Search Bar
+  model.removeElement(recipeId, model.state.search.results);
+  resultsView.render(model.getSearchResultsPage());
+  // Render initial pagination buttons
+  paginationView.render(model.state.search);
+
+  // Update Recipe view
+  recipeView.renderMessage();
+
+  // Close form window
+  setTimeout(function () {
+    deleteRecipeView.toggleWindow();
+  }, MODAL_CLOSE_SEC * 1000);
+};
+
 const controlAddRecipe = async function (newRecipe) {
   try {
     // Show loading spinner
@@ -145,6 +178,8 @@ const init = function () {
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
+
+  deleteRecipeView.addHandlerDelete(controlDeleteRecipe);
 
   searchView.addHandlerSearch(controlSearchResults);
 

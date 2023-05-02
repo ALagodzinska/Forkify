@@ -1,5 +1,5 @@
 import { async } from 'regenerator-runtime';
-import { TIMEOUT_SEC } from './config.js';
+import { KEY, TIMEOUT_SEC } from './config.js';
 
 const timeout = function (s) {
   return new Promise(function (_, reject) {
@@ -48,6 +48,24 @@ export const AJAX = async function (url, uploadData = undefined) {
     throw err;
   }
 };
+
+export const deleteAJAX = async function (url) {
+  try {
+    console.log('calling delete');
+    fetch(url, {
+      method: 'DELETE',
+    })
+      .then(res => res.text())
+      .then(res => console.log(res));
+  } catch (err) {
+    // rethrowing an error
+    throw err;
+  }
+};
+
+// deleteAJAX(
+//   `https:forkify-api.herokuapp.com/api/v2/recipes/644f06a7dfb45d0014b05718?key=${KEY}`
+// );
 
 // export const sendJSON = async function (url, uploadData) {
 //   try {

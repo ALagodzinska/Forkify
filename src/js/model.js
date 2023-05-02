@@ -2,7 +2,7 @@
 
 import { async } from 'regenerator-runtime';
 import { API_URL, RES_PER_PAGE, KEY } from './config.js';
-import { AJAX } from './helpers.js';
+import { AJAX, deleteAJAX } from './helpers.js';
 
 export const state = {
   recipe: {},
@@ -45,6 +45,29 @@ export const loadRecipe = async function (id) {
     console.error(`${err} 💥💥💥`);
     throw err;
   }
+};
+
+export const deleteRecipe = async function (id) {
+  try {
+    await deleteAJAX(`${API_URL}${id}?key=${KEY}`);
+
+    // Remove element from bookmarks
+    deleteBookmark(id);
+    // Change recipe in state to empty
+    state.recipe = {};
+  } catch (err) {
+    console.error(`${err} 💥💥💥`);
+    throw err;
+  }
+};
+
+export const removeElement = function (id, arr) {
+  if (arr.length === 0) return;
+  if (!arr.some(el => el.id === id)) return;
+
+  const findIndex = arr.findIndex(el => el.id === id);
+
+  arr.splice(findIndex, 1);
 };
 
 export const loadSearchResults = async function (query) {

@@ -10,6 +10,10 @@ class DeleteRecipeView extends View {
   _btnClose = document.querySelector('.close-popup-btn');
   _btnDelete = document.querySelector('.popup-delete-btn');
 
+  _message = 'Recipe was successfully deleted :)';
+  // ID storage
+  _recipeId = '';
+
   constructor() {
     super();
     this._showWindow();
@@ -18,9 +22,21 @@ class DeleteRecipeView extends View {
 
   render(id, title) {
     const markup = this._generateMarkup(title);
+    this._recipeId = id;
 
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  addHandlerDelete(handler) {
+    this._parentElement.addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('.popup-delete-btn');
+        if (!btn) return;
+        handler(this._recipeId);
+      }.bind(this)
+    );
   }
 
   toggleWindow() {
@@ -58,8 +74,8 @@ class DeleteRecipeView extends View {
 
   _generateMarkup(title) {
     return `<div>
-        <h1>Are you sure you want to delete "${title}"?</h1>
-        <div>
+        <h1>Are you sure you want to delete recipe - "${title}"?</h1>
+        <div class="delete-popup-buttons">
             <button class="popup-delete-btn">YES</button>
             <button class="close-popup-btn">NO</button>
         </div>

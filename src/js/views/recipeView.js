@@ -8,7 +8,7 @@ class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
   _data;
   _errorMessage = 'We could not find that recipe. Please try another one!';
-  _message = '';
+  _message = 'Start by searching for a recipe or an ingredient. Have fun!';
 
   addHandlerRender(handlerFunction) {
     ['hashchange', 'load'].forEach(event =>
