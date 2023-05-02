@@ -1,6 +1,7 @@
 'use strict';
 import View from './View.js';
 import icons from 'url:../../img/icons.svg';
+import MEASURE_UNITS from '../config.js';
 
 class AddRecipeView extends View {
   _parentElement = document.querySelector('.upload');
@@ -77,46 +78,44 @@ class AddRecipeView extends View {
           <input required name="servings" type="number" />
         </div>
 
-        <div class="upload__column">
-          <h3 class="upload__heading">Ingredients</h3>
-          <label>Ingredient 1</label>
-          <input
-            type="text"
-            required
-            name="ingredient-1"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-          <label>Ingredient 2</label>
-          <input
-            type="text"
-            name="ingredient-2"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-          <label>Ingredient 3</label>
-          <input
-            type="text"
-            name="ingredient-3"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-          <label>Ingredient 4</label>
-          <input
-            type="text"
-            name="ingredient-4"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-          <label>Ingredient 5</label>
-          <input
-            type="text"
-            name="ingredient-5"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-          <label>Ingredient 6</label>
-          <input
-            type="text"
-            name="ingredient-6"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-        </div>
+        <div>
+          <h3 class="upload__heading">Add ingredients:</h3>
+          <div>
+            <div class="input-group">
+              <input
+                type="number"
+                class="form-control ingredient-number"
+                placeholder="QTY"
+              />
+
+              <select class="custom-select" id="inputGroupSelect">
+                <option selected disabled>UNIT</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+
+              <input
+                type="text"
+                class="form-control ingredient-name"
+                placeholder="Name of ingredient..."
+              />
+
+              <div class="input-group-append">
+                <button
+                  class="btn--round add-ingredient-btn"
+                  type="button"
+                >
+                <svg>
+                      <use href="${icons}#icon-add"></use>
+                  </svg>
+                  </button>
+              </div>
+            </div>
+          </div>
+          <div class="ingredient-list">
+            <ul></ul>
+          </div>
 
         <button class="btn upload__btn">
           <svg>
