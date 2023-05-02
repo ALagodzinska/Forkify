@@ -1,7 +1,7 @@
 'use strict';
 import View from './View.js';
 import icons from 'url:../../img/icons.svg';
-import MEASURE_UNITS from '../config.js';
+import { MEASURE_UNITS } from '../config.js';
 
 class AddRecipeView extends View {
   _parentElement = document.querySelector('.upload');
@@ -90,9 +90,7 @@ class AddRecipeView extends View {
 
               <select class="custom-select" id="inputGroupSelect">
                 <option selected disabled>UNIT</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                ${this._generateMarkupForUnits()}
               </select>
 
               <input
@@ -124,6 +122,12 @@ class AddRecipeView extends View {
           <span>Upload</span>
         </button>
       </form>`;
+  }
+
+  _generateMarkupForUnits() {
+    return MEASURE_UNITS.map(
+      unit => `<option value="${unit}">${unit}</option>`
+    ).join('');
   }
 }
 
