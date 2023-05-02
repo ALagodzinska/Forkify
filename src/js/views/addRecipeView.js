@@ -29,6 +29,11 @@ class AddRecipeView extends View {
     this._window.classList.toggle('hidden');
   }
 
+  hideWindow() {
+    this._overlay.classList.add('hidden');
+    this._window.classList.add('hidden');
+  }
+
   _addHandlerShowWindow() {
     this._btnOpen.addEventListener(
       'click',

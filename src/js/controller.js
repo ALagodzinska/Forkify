@@ -160,12 +160,8 @@ const controlAddRecipe = async function (newRecipe) {
 
     // Close form window
     setTimeout(function () {
-      addRecipeView.toggleWindow();
+      addRecipeView.hideWindow();
     }, MODAL_CLOSE_SEC * 1000);
-    // Rerender recipe form
-    setTimeout(function () {
-      addRecipeView.render();
-    }, (MODAL_CLOSE_SEC + 1) * 1000);
   } catch (err) {
     console.error('💥', err);
     addRecipeView.renderError(err.message);
