@@ -16,6 +16,7 @@ class AddRecipeView extends View {
     super();
     this._addHandlerShowWindow();
     this._addHandlerHideWindow();
+    this._addHandlerAddIngredient();
   }
 
   render() {
@@ -48,6 +49,46 @@ class AddRecipeView extends View {
   _addHandlerHideWindow() {
     this._btnClose.addEventListener('click', this.toggleWindow.bind(this));
     this._overlay.addEventListener('click', this.toggleWindow.bind(this));
+  }
+
+  _addHandlerAddIngredient() {
+    this._parentElement.addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('.add-ingredient-btn');
+        if (!btn) return;
+        this._addIngredient();
+      }.bind(this)
+    );
+  }
+
+  _addIngredient() {
+    const qtyField = document.querySelector('.ingredient-number');
+    const unitField = document.getElementById('inputGroupSelect');
+    const nameField = document.querySelector('.ingredient-name');
+
+    const ingredientQty = qtyField.value;
+    const ingredientUnits = unitField.value;
+    const ingredientName = nameField.value;
+
+    // Add data validation
+    // Display error on screen and return
+
+    // Add ingredient to a list
+    const markup = `<li class="list-group-item ingredient-from-list">${ingredientQty} ${ingredientUnits} ${ingredientName} <button><svg>
+            <use href="${icons}#icon-remove-ingredient"></use>
+          </svg></button></li>`;
+
+    //Add to ingredient array
+
+    // inset to a list
+    document
+      .querySelector('.ingredients')
+      .insertAdjacentHTML('afterbegin', markup);
+    // clear input fields
+    qtyField.value = '';
+    unitField.value = '';
+    nameField.value = '';
   }
 
   addHandlerUpload(handler) {
@@ -89,7 +130,7 @@ class AddRecipeView extends View {
               />
 
               <select class="custom-select" id="inputGroupSelect">
-                <option selected disabled>UNIT</option>
+                <option value="" selected disabled hidden>UNIT</option>
                 ${this._generateMarkupForUnits()}
               </select>
 
@@ -112,7 +153,7 @@ class AddRecipeView extends View {
             </div>
           </div>
           <div class="ingredient-list">
-            <ul></ul>
+            <ul class="ingredients list-group"></ul>
           </div>
 
         <button class="btn upload__btn">

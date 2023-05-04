@@ -121,6 +121,45 @@
   margin-top: 1.25rem;
   margin-bottom: 2rem;
   height: 20rem;
+  overflow: auto;
+}
+
+.ingredient-from-list {
+  font-size: 1.3rem;
+
+  & button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    padding: 0;
+
+    svg {
+      height: 2.5rem;
+      width: 2.5rem;
+      fill: $color-primary;
+      transition: all 0.3s;
+    }
+
+    float: right;
+    // background-color: #a19d9d;
+    // border-radius: 50%;
+    // border: none;
+    // height: 2.5rem;
+    // width: 2.5rem;
+    // font-size: 1.3rem;
+
+    &:hover {
+      transform: scale(1.07);
+      background-color: #f48982;
+    }
+  }
+
+  &:hover {
+    background-color: #ece7e7;
+  }
 }
 
 .upload {
