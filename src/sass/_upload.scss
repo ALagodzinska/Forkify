@@ -124,6 +124,12 @@
   overflow: auto;
 }
 
+.ingredient-validation {
+  & span {
+    color: red;
+  }
+}
+
 .ingredient-from-list {
   font-size: 1.3rem;
 
@@ -144,13 +150,6 @@
     }
 
     float: right;
-    // background-color: #a19d9d;
-    // border-radius: 50%;
-    // border: none;
-    // height: 2.5rem;
-    // width: 2.5rem;
-    // font-size: 1.3rem;
-
     &:hover {
       transform: scale(1.07);
       background-color: #f48982;

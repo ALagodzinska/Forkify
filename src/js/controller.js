@@ -7,6 +7,11 @@ import bookmarksView from './views/bookmarksView.js';
 import paginationView from './views/paginationView.js';
 import addRecipeView from './views/addRecipeView.js';
 import deleteRecipeView from './views/deleteRecipeView.js';
+import * as ingrModel from './ingredientsModel.js';
+import {
+  displayNewIngredient,
+  displayIngredients,
+} from './views/addIngredientsView.js';
 
 // import icons from '../img/icons.svg'; // Parcel 1
 // returns link to icons file from dist folder
@@ -168,6 +173,23 @@ const controlAddRecipe = async function (newRecipe) {
   }
 };
 
+const controlAddIngredient = function (dataArr) {
+  if (!dataArr) return;
+  const [qty, unit, name] = dataArr;
+  // create element and push it to array
+  const ingredient = ingrModel.createIngredientObject(qty, unit, name);
+  // display ingredient
+  displayNewIngredient(ingredient);
+};
+
+const controlRemoveIngredient = function (id) {
+  if (!id) return;
+  // Remove element from array
+  model.removeElement(id, ingrModel.ingredientList);
+  //Rerender ingredient view
+  displayIngredients(ingrModel.ingredientList);
+};
+
 const init = function () {
   //publisher subscriber pattern
   bookmarksView.addHandlerRender(controlBookmarks);
@@ -182,5 +204,7 @@ const init = function () {
   paginationView.addHandlerClick(controlPagination);
 
   addRecipeView.addHandlerUpload(controlAddRecipe);
+  addRecipeView.addHandlerAddIngredient(controlAddIngredient);
+  addRecipeView.addHandlerRemoveIngredient(controlRemoveIngredient);
 };
 init();
