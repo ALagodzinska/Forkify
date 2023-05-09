@@ -51,7 +51,6 @@ export const AJAX = async function (url, uploadData = undefined) {
 
 export const deleteAJAX = async function (url) {
   try {
-    console.log('calling delete');
     fetch(url, {
       method: 'DELETE',
     })

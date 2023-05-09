@@ -51,8 +51,6 @@ class DeleteRecipeView extends View {
         const btn = e.target.closest('.btn--delete');
         if (!btn) return;
 
-        console.log(btn.dataset);
-
         this.render(btn.dataset.id, btn.dataset.name);
         this.toggleWindow();
       }.bind(this)

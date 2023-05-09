@@ -141,6 +141,10 @@ class RecipeView extends View {
               <use href="${icons}#icon-arrow-right"></use>
             </svg>
           </a>
+        </div>
+        
+        <div class="recipe__ingredients">
+        <h2 class="heading--2">Total Calories:</h2>
         </div>`;
   }
 

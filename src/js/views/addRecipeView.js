@@ -104,8 +104,6 @@ class AddRecipeView extends View {
         const data = Object.fromEntries(dataArray);
         data.ingredients = ingredients;
 
-        console.log(data.ingredients);
-
         handler(data);
       }.bind(this)
     );
