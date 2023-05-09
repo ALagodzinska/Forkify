@@ -66,6 +66,10 @@
 .close-popup-btn {
   background-color: #fbdb89;
 }
+
+.input-element {
+  // display: contents;
+}
 ///
 
 .overlay {
@@ -86,7 +90,12 @@
 }
 
 .ingredient-number {
-  font-size: 13px !important;
+  width: 4rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1rem;
+  font-size: 1.5rem !important;
+  transition: all 0.2s;
 }
 
 #inputGroupSelect {
@@ -98,7 +107,12 @@
 }
 
 .ingredient-name {
-  font-size: 13px !important;
+  width: 4rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1rem;
+  font-size: 1.5rem !important;
+  transition: all 0.2s;
   width: 180px !important;
 }
 
@@ -119,14 +133,25 @@
   border: solid #ddd 1px;
   border-radius: 5px;
   margin-top: 1.25rem;
-  margin-bottom: 2rem;
+  // margin-bottom: 2rem;
   height: 20rem;
   overflow: auto;
 }
 
 .ingredient-validation {
   & span {
-    color: red;
+    color: #dc3545;
+  }
+}
+
+.empty-list-error {
+  border-color: #dc3545;
+}
+
+.ingredient-list-validation {
+  margin-bottom: 2rem;
+  & span {
+    color: #dc3545;
   }
 }
 

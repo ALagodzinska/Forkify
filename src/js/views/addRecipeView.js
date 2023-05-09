@@ -2,7 +2,10 @@
 import View from './View.js';
 import icons from 'url:../../img/icons.svg';
 import { MEASURE_UNITS } from '../config.js';
-import { getIngredientData } from './addIngredientsView.js';
+import {
+  getIngredientData,
+  checkIfIngredientsListIsEmpty,
+} from './addIngredientsView.js';
 
 class AddRecipeView extends View {
   _parentElement = document.querySelector('.upload');
@@ -74,32 +77,86 @@ class AddRecipeView extends View {
     );
   }
 
-  addHandlerUpload(handler) {
-    this._parentElement.addEventListener('submit', function (e) {
-      e.preventDefault();
-      // array with all fields and values
-      const dataArray = [...new FormData(this)];
-      const data = Object.fromEntries(dataArray);
-      handler(data);
-    });
+  addHandlerUpload(handler, getIngredients) {
+    this._parentElement.addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('.upload__btn');
+        if (!btn) return;
+
+        // get ingredients
+        const ingredients = getIngredients();
+        const isEmptyList = checkIfIngredientsListIsEmpty(ingredients);
+
+        // Validate form fields if error return
+        if (!this._parentElement.checkValidity() || isEmptyList) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          this._parentElement.classList.add('was-validated');
+          return;
+        }
+
+        this._parentElement.classList.add('was-validated');
+
+        // array with all fields and values
+        const dataArray = [...new FormData(this._parentElement)];
+        const data = Object.fromEntries(dataArray);
+        data.ingredients = ingredients;
+
+        console.log(data.ingredients);
+
+        handler(data);
+      }.bind(this)
+    );
   }
 
   _generateMarkup() {
     return `<form class="upload">
         <div class="upload__column">
           <h3 class="upload__heading">Recipe data</h3>
-          <label>Title</label>
-          <input required name="title" type="text" />
-          <label>URL</label>
-          <input required name="sourceUrl" type="text" />
-          <label>Image URL</label>
-          <input required name="image" type="text" />
-          <label>Publisher</label>
-          <input required name="publisher" type="text" />
-          <label>Prep time</label>
-          <input required name="cookingTime" type="number" />
-          <label>Servings</label>
-          <input required name="servings" type="number" />
+          <div class="input-element">
+            <label>Title</label>
+            <input required name="title" type="text" class="form-control" />
+            <div class="invalid-feedback">
+              Please input recipe name.
+            </div>
+          </div>
+          <div class="input-element">
+            <label>URL</label>
+            <input required name="sourceUrl" type="url" class="form-control" />
+            <div class="invalid-feedback">
+              Please input correct source link.
+            </div>
+          </div>
+          <div class="input-element">
+            <label>Image URL</label>
+            <input required name="image" type="url" class="form-control" />
+            <div class="invalid-feedback">
+              Please input correct image link.
+            </div>
+          </div>
+          <div class="input-element">
+            <label>Publisher</label>
+            <input required name="publisher" type="text" class="form-control" />
+            <div class="invalid-feedback">
+              Please publisher name.
+            </div>
+          </div>
+          <div class="input-element">
+            <label>Prep time</label>
+            <input required name="cookingTime" min="1" type="number" class="form-control" />
+            <div class="invalid-feedback">
+              Please input valid preparation time.
+            </div>
+          </div>
+          <div class="input-element">
+            <label>Servings</label>
+            <input required name="servings" min="1" type="number" class="form-control" />
+            <div class="invalid-feedback">
+              Please input valid serving count.
+            </div>
+          </div>
         </div>
 
         <div class="ingredient-input-bar">
@@ -108,7 +165,8 @@ class AddRecipeView extends View {
             <div class="input-group">
               <input
                 type="number"
-                class="form-control ingredient-number"
+                class="ingredient-number"
+                min="0"
                 placeholder="QTY"
               />
 
@@ -119,7 +177,7 @@ class AddRecipeView extends View {
 
               <input
                 type="text"
-                class="form-control ingredient-name"
+                class="ingredient-name"
                 placeholder="Name of ingredient..."
               />
 
@@ -136,10 +194,13 @@ class AddRecipeView extends View {
             </div>
           </div>
           <div class="ingredient-validation">
-          <span class="ingredient-error"></span>
+            <span class="ingredient-error"></span>
           </div>
           <div class="ingredient-list">    
             <ul class="ingredients list-group"></ul>
+          </div>
+          <div class="ingredient-list-validation">
+            <span class="ingredient-list-error"></span>
           </div>
 
         <button class="btn upload__btn">

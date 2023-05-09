@@ -169,7 +169,6 @@ const controlAddRecipe = async function (newRecipe) {
     }, MODAL_CLOSE_SEC * 1000);
   } catch (err) {
     console.error('💥', err);
-    addRecipeView.renderError(err.message);
   }
 };
 
@@ -190,6 +189,10 @@ const controlRemoveIngredient = function (id) {
   displayIngredients(ingrModel.ingredientList);
 };
 
+const controlGetIngredients = function () {
+  return ingrModel.ingredientList;
+};
+
 const init = function () {
   //publisher subscriber pattern
   bookmarksView.addHandlerRender(controlBookmarks);
@@ -203,7 +206,7 @@ const init = function () {
 
   paginationView.addHandlerClick(controlPagination);
 
-  addRecipeView.addHandlerUpload(controlAddRecipe);
+  addRecipeView.addHandlerUpload(controlAddRecipe, controlGetIngredients);
   addRecipeView.addHandlerAddIngredient(controlAddIngredient);
   addRecipeView.addHandlerRemoveIngredient(controlRemoveIngredient);
 };

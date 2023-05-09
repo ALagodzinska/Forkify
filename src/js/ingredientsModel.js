@@ -6,9 +6,9 @@ export const ingredientList = [];
 export const createIngredientObject = function (qty, unit, name) {
   const ingredient = {
     id: uuidv4(),
-    qty: qty,
+    quantity: qty,
     unit: unit,
-    name: name,
+    description: name,
   };
 
   ingredientList.push(ingredient);
