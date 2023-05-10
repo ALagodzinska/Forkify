@@ -43,6 +43,7 @@ class AddRecipeView extends View {
     this._btnOpen.addEventListener(
       'click',
       function () {
+        this._parentElement.classList.remove('was-validated');
         this.render();
         this.toggleWindow();
       }.bind(this)
@@ -115,44 +116,56 @@ class AddRecipeView extends View {
           <h3 class="upload__heading">Recipe data</h3>
           <div class="input-element">
             <label>Title</label>
-            <input required name="title" type="text" class="form-control" />
-            <div class="invalid-feedback">
-              Please input recipe name.
+            <div>
+              <input required name="title" type="text" class="form-control" />
+              <div class="invalid-feedback">
+                Please input recipe name.
+              </div>
             </div>
           </div>
           <div class="input-element">
             <label>URL</label>
-            <input required name="sourceUrl" type="url" class="form-control" />
-            <div class="invalid-feedback">
-              Please input correct source link.
+            <div>
+              <input required name="sourceUrl" type="url" class="form-control" />
+              <div class="invalid-feedback">
+                Please input correct source link.
+              </div>
             </div>
           </div>
           <div class="input-element">
             <label>Image URL</label>
-            <input required name="image" type="url" class="form-control" />
-            <div class="invalid-feedback">
-              Please input correct image link.
+            <div>
+              <input required name="image" type="url" class="form-control" />
+              <div class="invalid-feedback">
+                Please input correct image link.
+              </div>
             </div>
           </div>
           <div class="input-element">
             <label>Publisher</label>
-            <input required name="publisher" type="text" class="form-control" />
-            <div class="invalid-feedback">
-              Please publisher name.
+            <div>
+              <input required name="publisher" type="text" class="form-control" />
+              <div class="invalid-feedback">
+                Please publisher name.
+              </div>
             </div>
           </div>
           <div class="input-element">
             <label>Prep time</label>
-            <input required name="cookingTime" min="1" type="number" class="form-control" />
-            <div class="invalid-feedback">
-              Please input valid preparation time.
+            <div>
+              <input required name="cookingTime" min="1" type="number" class="form-control" />
+              <div class="invalid-feedback">
+                Please input valid preparation time.
+              </div>
             </div>
           </div>
           <div class="input-element">
             <label>Servings</label>
-            <input required name="servings" min="1" type="number" class="form-control" />
-            <div class="invalid-feedback">
-              Please input valid serving count.
+            <div>
+              <input required name="servings" min="1" type="number" class="form-control" />
+              <div class="invalid-feedback">
+                Please input valid serving count.
+              </div>
             </div>
           </div>
         </div>

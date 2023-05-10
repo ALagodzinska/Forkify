@@ -68,6 +68,8 @@
 }
 
 .input-element {
+  display: grid;
+  grid-template-columns: 1fr 2.8fr;
   // display: contents;
 }
 ///
@@ -134,7 +136,7 @@
   border-radius: 5px;
   margin-top: 1.25rem;
   // margin-bottom: 2rem;
-  height: 20rem;
+  height: 29rem;
   overflow: auto;
 }
 
@@ -193,7 +195,7 @@
 
   &__column {
     display: grid;
-    grid-template-columns: 1fr 2.8fr;
+    // grid-template-columns: 1fr 2.8fr;
     align-items: center;
     gap: 1.5rem;
 
