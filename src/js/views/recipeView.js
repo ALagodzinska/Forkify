@@ -143,8 +143,14 @@ class RecipeView extends View {
           </a>
         </div>
         
-        <div class="recipe__ingredients">
+        <div class="recipe__ingredients recipe__calories">
         <h2 class="heading--2">Total Calories:</h2>
+        <h1>0000 kCal</h1>
+        <h2>
+        <span>PROTEIN: %</span>
+        <span>FAT: %</span>
+        <span>CARBS: %</span>
+        </h2>
         </div>`;
   }
 
