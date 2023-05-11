@@ -210,6 +210,6 @@ const init = function () {
   addRecipeView.addHandlerAddIngredient(controlAddIngredient);
   addRecipeView.addHandlerRemoveIngredient(controlRemoveIngredient);
 
-  console.log('HELLOO!');
+  console.log('HELLOO! ');
 };
 init();
