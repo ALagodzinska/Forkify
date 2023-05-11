@@ -209,5 +209,7 @@ const init = function () {
   addRecipeView.addHandlerUpload(controlAddRecipe, controlGetIngredients);
   addRecipeView.addHandlerAddIngredient(controlAddIngredient);
   addRecipeView.addHandlerRemoveIngredient(controlRemoveIngredient);
+
+  console.log('HELLOO!');
 };
 init();
