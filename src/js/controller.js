@@ -16,13 +16,13 @@ import {
 // import icons from '../img/icons.svg'; // Parcel 1
 // returns link to icons file from dist folder
 // import icons from 'url:../img/icons.svg'; // Parcel 2
-import 'core-js/stable'; // polyfilled everything else
-import 'regenerator-runtime/runtime'; // polyfilled async await
-import { async } from 'regenerator-runtime';
+// import 'core-js/stable'; // polyfilled everything else
+// import 'regenerator-runtime/runtime'; // polyfilled async await
+// import { async } from 'regenerator-runtime';
 
-if (module.hot) {
-  module.hot.accept();
-}
+// if (module.hot) {
+//   module.hot.accept();
+// }
 
 // https://forkify-api.herokuapp.com/v2
 
