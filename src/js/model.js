@@ -14,7 +14,6 @@ export const state = {
     resultsPerPage: RES_PER_PAGE,
   },
   bookmarks: [],
-  ingredientsNutrition: [],
 };
 
 const createRecipeObject = function (data) {
@@ -129,8 +128,6 @@ export const addBookmark = function (recipe) {
   persistBookmarks();
 };
 
-const addNutritionData = function () {};
-
 export const deleteBookmark = function (id) {
   // Delete Bookmark
   const index = state.bookmarks.findIndex(el => el.id === id);
@@ -178,19 +175,6 @@ export const uploadRecipe = async function (newRecipe) {
 const init = function () {
   const storage = localStorage.getItem('bookmarks');
   if (storage) state.bookmarks = JSON.parse(storage);
-
-  getRecipeNutrients([
-    {
-      description: 'white bread',
-      quantity: 200,
-      unit: 'g',
-    },
-    {
-      description: 'chicken wings',
-      quantity: 200,
-      unit: 'g',
-    },
-  ]);
 };
 
 init();
