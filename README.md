@@ -1,6 +1,6 @@
 # Forkify App
 
-Application is created using - javascript, scss, html, forkify v2 and spoonacular API.
+Application is created using - javascript, scss, html, forkify v2 API.
 
 This is a recipe application with custom recipe uploads. This application allows you to easily search for and save your favorite recipes, while also giving you the ability to create and add your very own recipes to the collection.
 
